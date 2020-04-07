@@ -18,6 +18,7 @@ public:
     int getY();
     void set(int x, int y);
     void display();
+
 private:
     int _x,_y;
 
