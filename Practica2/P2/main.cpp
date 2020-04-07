@@ -24,5 +24,7 @@ int main(int argc, char *argv[])
     p3.setAge(30);
     cout << "Nombre: " << p3.getName() << endl << "Edad: " << p3.getAge() << endl;
 
+
+
     return a.exec();
 }
