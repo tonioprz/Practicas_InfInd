@@ -34,4 +34,5 @@ HEADERS += \
     processor.h \
     keyboard.h \
     linekeyboard.h \
-    charkeyboard.h
+    charkeyboard.h \
+    general.h

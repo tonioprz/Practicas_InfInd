@@ -8,8 +8,10 @@ class Device
 {
 public:
     Device();
-    Device(string const name);
-    string getName();
+    Device(string const &name);
+    const string &getName();
+    void setName(string const &name);
+    ~Device();
 private:
     string _name;
 };

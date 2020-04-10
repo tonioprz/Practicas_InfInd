@@ -6,6 +6,8 @@ class CharKeyboard : public Keyboard
 {
 public:
     CharKeyboard();
+    CharKeyboard(const string &name);
+    void process();
 };
 
 #endif // CHARKEYBOARD_H
