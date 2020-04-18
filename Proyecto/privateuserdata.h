@@ -5,14 +5,17 @@
 class PrivateUserData
 {
 public:
-    void setEmail(std::string email);
-    std::string getEmail();
-    void setPassword(std::string password);
-    std::string getPassword();
+
+    std::string email() const;
+    void setEmail(const std::string &email);
+
+    std::string password() const;
+    void setPassword(const std::string &password);
+
 private:
     PrivateUserData();
 protected:
-    PrivateUserData(std::string email, std::string pass);
+    PrivateUserData(const std::string &email, const std::string &pass);
     std::string _email;
     std::string _password;
 };
