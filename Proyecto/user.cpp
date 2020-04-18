@@ -1,14 +1,13 @@
 #include "user.h"
 
+
+User::User(const string &email, const string &pass, const string &username, const string &bio)
+{
+    PrivateUserData(email, pass);
+    PublicUserData(username, bio);
+}
+
 User::User()
 {
 
-}
-
-User::User(const string &email, const string &password, const string &username, const string &bio)
-{
-    _email = email;
-    _password = password;
-    _username = username;
-    _bio = bio;
 }
