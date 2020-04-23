@@ -18,5 +18,5 @@ void LineKeyboard::process(){
         if(aux[i] == '\n'){continue;}
     }
     cout << endl;
-    _cpu.process(aux2);
+    _cpu->process(aux2);
 }

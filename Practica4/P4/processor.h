@@ -7,10 +7,10 @@ class Processor : public Device
 public:
     Processor();
     Processor(const string &name);
-    void connectTo(Display &disp);
+    void connectTo(Display *disp);
     void process(const string &data);
 private:
-    Display _disp;
+    Display *_disp;
 };
 
 #endif // PROCESSOR_H

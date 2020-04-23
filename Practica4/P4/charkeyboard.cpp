@@ -13,5 +13,5 @@ void CharKeyboard::process(){
     string aux;
     aux = cin.get();
     cout << "Introduzca un carácter: " << aux << endl;
-    _cpu.process(aux);
+    _cpu->process(aux);
 }

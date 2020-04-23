@@ -9,9 +9,10 @@ int main()
     Processor cpu = Processor("Intel");
     Keyboard teclado = Keyboard("Tecla");
 
-    cpu.connectTo(disp);
-    teclado.connecTo(cpu);
+    cpu.connectTo(&disp);
+    teclado.connecTo(&cpu);
     teclado.process();
 
     return 0;
+
 }

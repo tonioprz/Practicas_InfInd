@@ -10,7 +10,7 @@ Keyboard::Keyboard(const string &name){
     setName(name);
 }
 
-void Keyboard::connecTo(Processor &cpu){
+void Keyboard::connecTo(Processor *cpu){
     _cpu = cpu;
 }
 
@@ -19,5 +19,5 @@ void Keyboard::process(){
     cout << "Introduzca cadena: ";
     cin >> aux;
     cout << endl;
-    _cpu.process(aux);
+    _cpu->process(aux);
 }

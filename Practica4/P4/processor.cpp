@@ -8,14 +8,15 @@ Processor::Processor(const string &name){
     setName(name);
 }
 
-void Processor::connectTo(Display &d){
-    Display _disp = d;
+void Processor::connectTo(Display *d){
+    _disp = d;
 }
 
 void Processor::process(const string &data){
-    string aux;
-    for(int i=0;i<sizeof(data);i++){
-        aux[0] = data[sizeof(data)-i];
+    string aux = data;
+    int max = data.size();
+    for(int i=0;i<max;i++){
+        aux[i] = data[max-1-i];
     }
-    _disp.process(aux);
+    _disp->process(aux);
 }

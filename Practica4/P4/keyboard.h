@@ -7,10 +7,10 @@ class Keyboard : public Device
 public:
     Keyboard();
     Keyboard(const string &name);
-    void connecTo(Processor &cpu);
+    void connecTo(Processor *cpu);
     void process();
 protected:
-    Processor _cpu;
+    Processor *_cpu;
 };
 
 #endif // KEYBOARD_H
