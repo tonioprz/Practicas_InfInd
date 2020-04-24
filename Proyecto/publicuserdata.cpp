@@ -5,6 +5,11 @@ PublicUserData::PublicUserData()
 
 }
 
+PublicUserData::~PublicUserData()
+{
+
+}
+
 PublicUserData::PublicUserData(const string &username, const string &bio)
 {
     _username = username;
@@ -49,6 +54,11 @@ void PublicUserData::decreaseFollowers()
     }
 }
 
-int PublicUserData::getFollowing() const
+int PublicUserData::getFollowing()
 {
+    return _following.size();
+    //Devuelve el número, no los seguidos
+    //Pendiente de revisión
 }
+
+

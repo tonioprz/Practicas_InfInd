@@ -1,22 +1,29 @@
 #include "processor.h"
-#include"display.h"
+
 Processor::Processor()
 {
 }
 
-Processor::Processor(const string &name){
+Processor::Processor(const string & name){
     setName(name);
 }
 
-void Processor::connectTo(Display *d){
-    _disp = d;
+void Processor::connectTo(Output &O){
+    _output = &O;
 }
 
-void Processor::process(const string &data){
-    string aux = data;
-    int max = data.size();
-    for(int i=0;i<max;i++){
-        aux[i] = data[max-1-i];
-    }
-    _disp->process(aux);
+void Processor::process(const string &data)
+{
+
+}
+
+void Processor::process(const string &data, int n)
+{
+
+}
+
+Output &Processor::operator >>(Output &O)
+{
+    _output = &O;
+    return O;
 }

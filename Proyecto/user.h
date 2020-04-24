@@ -7,10 +7,13 @@ using namespace std;
 
 class User : public PrivateUserData , public PublicUserData
 {
-public:
-    User(const string &email, const string &password, const string &username, const string &bio);
 private:
     User();
+
+public:
+
+    User(const string &email, const string &password, const string &username, const string &bio);
+    ~User();
 };
 
 #endif // USER_H

@@ -4,27 +4,32 @@ PrivateUserData::PrivateUserData(){
 
 }
 
-PrivateUserData::PrivateUserData(const std::string &email, const std::string &pass){
+PrivateUserData::~PrivateUserData()
+{
+
+}
+
+PrivateUserData::PrivateUserData(const string &email, const string &pass){
     _email = email;
     _password = pass;
 }
 
-std::string PrivateUserData::password() const
+string PrivateUserData::password() const
 {
     return _password;
 }
 
-void PrivateUserData::setPassword(const std::string &password)
+void PrivateUserData::setPassword(const string &password)
 {
     _password = password;
 }
 
-std::string PrivateUserData::email() const
+string PrivateUserData::email() const
 {
     return _email;
 }
 
-void PrivateUserData::setEmail(const std::string &email)
+void PrivateUserData::setEmail(const string &email)
 {
     _email = email;
 }

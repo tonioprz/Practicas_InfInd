@@ -1,23 +1,27 @@
 #ifndef PRIVATEUSERDATA_H
 #define PRIVATEUSERDATA_H
 #include<iostream>
-
+using namespace std;
 class PrivateUserData
 {
+private:
+
+protected:
+    PrivateUserData();
+
+    PrivateUserData(const string &email, const string &pass);
+    string _email;
+    string _password;
+    ~PrivateUserData();
+
 public:
 
-    std::string email() const;
-    void setEmail(const std::string &email);
+    string email() const;
+    void setEmail(const string &email);
 
-    std::string password() const;
-    void setPassword(const std::string &password);
+    string password() const;
+    void setPassword(const string &password);
 
-private:
-    PrivateUserData();
-protected:
-    PrivateUserData(const std::string &email, const std::string &pass);
-    std::string _email;
-    std::string _password;
 };
 
 #endif // PRIVATEUSERDATA_H

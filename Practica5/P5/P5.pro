@@ -18,15 +18,25 @@ SOURCES += main.cpp \
     charkeyboard.cpp \
     device.cpp \
     display.cpp \
+    input.cpp \
     keyboard.cpp \
     linekeyboard.cpp \
-    processor.cpp
+    output.cpp \
+    printer.cpp \
+    processor.cpp \
+    reverse.cpp \
+    uppercase.cpp
 
 HEADERS += \
     charkeyboard.h \
     device.h \
     display.h \
     general.h \
+    input.h \
     keyboard.h \
     linekeyboard.h \
-    processor.h
+    output.h \
+    printer.h \
+    processor.h \
+    reverse.h \
+    uppercase.h

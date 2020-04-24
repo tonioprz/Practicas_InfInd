@@ -35,7 +35,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = Proyecto1.0.0
-DISTDIR = /home/tonio/Practicas_InfInd/build-Proyecto-Desktop-Debug/.tmp/Proyecto1.0.0
+DISTDIR = /home/u/Practicas_infind/build-Proyecto-Desktop-Debug/.tmp/Proyecto1.0.0
 LINK          = g++
 LFLAGS        = 
 LIBS          = $(SUBLIBS) -lQt5Core -lpthread 
@@ -53,11 +53,13 @@ OBJECTS_DIR   = ./
 SOURCES       = ../Proyecto/main.cpp \
 		../Proyecto/privateuserdata.cpp \
 		../Proyecto/publicuserdata.cpp \
-		../Proyecto/user.cpp 
+		../Proyecto/user.cpp \
+		../Proyecto/Manager.cpp 
 OBJECTS       = main.o \
 		privateuserdata.o \
 		publicuserdata.o \
-		user.o
+		user.o \
+		Manager.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -132,10 +134,12 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		../Proyecto/Proyecto.pro ../Proyecto/privateuserdata.h \
 		../Proyecto/publicuserdata.h \
-		../Proyecto/user.h ../Proyecto/main.cpp \
+		../Proyecto/user.h \
+		../Proyecto/Manager.h ../Proyecto/main.cpp \
 		../Proyecto/privateuserdata.cpp \
 		../Proyecto/publicuserdata.cpp \
-		../Proyecto/user.cpp
+		../Proyecto/user.cpp \
+		../Proyecto/Manager.cpp
 QMAKE_TARGET  = Proyecto
 DESTDIR       = 
 TARGET        = Proyecto
@@ -311,8 +315,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Proyecto/privateuserdata.h ../Proyecto/publicuserdata.h ../Proyecto/user.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Proyecto/main.cpp ../Proyecto/privateuserdata.cpp ../Proyecto/publicuserdata.cpp ../Proyecto/user.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Proyecto/privateuserdata.h ../Proyecto/publicuserdata.h ../Proyecto/user.h ../Proyecto/Manager.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Proyecto/main.cpp ../Proyecto/privateuserdata.cpp ../Proyecto/publicuserdata.cpp ../Proyecto/user.cpp ../Proyecto/Manager.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -358,7 +362,9 @@ compiler_clean: compiler_moc_predefs_clean
 
 ####### Compile
 
-main.o: ../Proyecto/main.cpp 
+main.o: ../Proyecto/main.cpp ../Proyecto/publicuserdata.h \
+		../Proyecto/privateuserdata.h \
+		../Proyecto/user.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Proyecto/main.cpp
 
 privateuserdata.o: ../Proyecto/privateuserdata.cpp ../Proyecto/privateuserdata.h
@@ -367,8 +373,13 @@ privateuserdata.o: ../Proyecto/privateuserdata.cpp ../Proyecto/privateuserdata.h
 publicuserdata.o: ../Proyecto/publicuserdata.cpp ../Proyecto/publicuserdata.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o publicuserdata.o ../Proyecto/publicuserdata.cpp
 
-user.o: ../Proyecto/user.cpp ../Proyecto/user.h
+user.o: ../Proyecto/user.cpp ../Proyecto/user.h \
+		../Proyecto/publicuserdata.h \
+		../Proyecto/privateuserdata.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o user.o ../Proyecto/user.cpp
+
+Manager.o: ../Proyecto/Manager.cpp ../Proyecto/Manager.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Manager.o ../Proyecto/Manager.cpp
 
 ####### Install
 

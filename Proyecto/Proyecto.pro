@@ -18,7 +18,8 @@ SOURCES += \
         main.cpp \
     privateuserdata.cpp \
     publicuserdata.cpp \
-    user.cpp
+    user.cpp \
+    Manager.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -28,4 +29,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     privateuserdata.h \
     publicuserdata.h \
-    user.h
+    user.h \
+    Manager.h
