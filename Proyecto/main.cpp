@@ -1,6 +1,6 @@
-#include "publicuserdata.h"
-#include "privateuserdata.h"
-#include "user.h"
+#include "PublicUserData.h"
+#include "PrivateUserData.h"
+#include "User.h"
 
 int main()
 {

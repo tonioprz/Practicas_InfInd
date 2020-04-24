@@ -16,10 +16,10 @@ protected:
 
 public:
 
-    string email() const;
+    string getEmail() const;
     void setEmail(const string &email);
 
-    string password() const;
+    string getPassword() const;
     void setPassword(const string &password);
 
 };

@@ -1,4 +1,4 @@
-#include "user.h"
+#include "User.h"
 
 User::User(const string &email, const string &password, const string &username, const string &bio):
     PrivateUserData(email, password),

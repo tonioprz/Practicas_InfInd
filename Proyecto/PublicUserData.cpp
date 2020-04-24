@@ -1,4 +1,4 @@
-#include "publicuserdata.h"
+#include "PublicUserData.h"
 
 PublicUserData::PublicUserData()
 {

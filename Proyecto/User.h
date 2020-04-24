@@ -1,7 +1,7 @@
 #ifndef USER_H
 #define USER_H
-#include "publicuserdata.h"
-#include "privateuserdata.h"
+#include "PublicUserData.h"
+#include "PrivateUserData.h"
 #include<iostream>
 using namespace std;
 

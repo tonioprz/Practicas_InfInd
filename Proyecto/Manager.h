@@ -2,7 +2,7 @@
 #define MANAGER_H
 #include <iostream>
 #include <vector>
-#include "user.h"
+#include "User.h"
 using namespace std;
 
 class Manager
@@ -13,12 +13,12 @@ public:
     //METODOS SI NO HAY NADIE LOGUEADO
     bool createUser(const string email, const string password, const string username, const string bio);
     vector<PublicUserData*> showUsers();
-    void showUser(string username);
+    PublicUserData* showUser(string username);
     bool login(string email, string password);
     //METODOS SI ALGUIEN ESTA LOGUEADO
     bool isLogged();
     bool logout();
-    User getCurrentUser();
+    User* getCurrentUser();
     bool editEmail(string nuevo_email);
     bool editPassword(string nueva_password);
     bool editUsername(string nuevo_username);
