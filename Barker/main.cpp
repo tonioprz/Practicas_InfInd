@@ -2,7 +2,7 @@
 #include "PrivateUserData.hpp"
 #include "User.hpp"
 #include "Manager.hpp"
-#include<iostream>
+#include <iostream>
 
 int main()
 {

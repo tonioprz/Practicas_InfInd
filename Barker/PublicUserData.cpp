@@ -64,10 +64,12 @@ bool PublicUserData::follow(PublicUserData* user)
     unsigned int aux = _following.size();
     for(int i=0;i<aux;i++){
         if(_following[i] == user){
-            _following.push_back(user);
+            return false;
         }
     }
 
+    _following.push_back(user);
+    user->increaseFollowers();
     if(aux < _following.size()){
         return true;
     }else{
@@ -78,12 +80,12 @@ bool PublicUserData::follow(PublicUserData* user)
 bool PublicUserData::unfollow(PublicUserData *user)
 {
     int aux = _following.size();
-    PublicUserData* usuario;
     for(int i=0;i<_following.size();i++){
         if(_following[i] == user){
             _following.erase(_following.begin()+i);
         }
     }
+    user->decreaseFollowers();
     if(aux > _following.size()){
         return true;
     }else{

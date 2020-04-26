@@ -15,7 +15,9 @@ protected:
     string _username;
     string _bio;
     int _followers;
+
     vector<PublicUserData*> _following;
+
     PublicUserData(const string &username, const string &bio);
     ~PublicUserData();
 

@@ -193,16 +193,27 @@ bool Manager::followUser(const string username)
         return false;
     }
 
-    PublicUserData* aseguir = nullptr;
+    if(_users[_currentUser]->getUsername() == username){
+        return false;
+    }
 
+    vector<PublicUserData*> yaseguidos = _users[_currentUser]->getFollowing();
+    for(int i=0; i< yaseguidos.size();i++){
+        if(yaseguidos[i]->getUsername() == username){
+            return false;
+        }
+    }
+
+    PublicUserData* aseguir = nullptr;
     for(int i=0; i < _users.size(); i++){
         if(_users[i]->getUsername() == username){
             aseguir = _users[i];
-            continue;
         }
     }
+
     if(aseguir != nullptr){
-    return _users[_currentUser]->follow(aseguir);
+        _users[_currentUser]->follow(aseguir);
+        return true;
     }
     else{
         return false;
@@ -215,6 +226,20 @@ bool Manager::unfollowUser(const string username)
         return false;
     }
 
+    if(_users[_currentUser]->getUsername() == username){
+        return false;
+    }
+
+
+    vector<PublicUserData*> yaseguidos = _users[_currentUser]->getFollowing();
+
+    for(int i=0; i < yaseguidos.size(); i++){
+        if(yaseguidos[i]->getUsername() == username){
+            _users[_currentUser]->unfollow(yaseguidos[i]);
+            return true;
+        }
+    }
+
+
+    return false;
 }
-
-
