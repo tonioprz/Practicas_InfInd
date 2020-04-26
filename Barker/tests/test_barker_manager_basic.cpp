@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
 #include <string>
 
-#include "../User.h"
-#include "../Manager.h"
+#include "../User.hpp"
+#include "../Manager.hpp"
 
 // The fixture for testing class Foo.
 class TestBarkerManagerBasic : public ::testing::Test {

@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <string>
 
-#include "../User.h"
+#include "../User.hpp"
 
 // The fixture for testing class Foo.
 class TestBarkerUser : public ::testing::Test {

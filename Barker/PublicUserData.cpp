@@ -1,4 +1,4 @@
-#include "PublicUserData.h"
+#include "PublicUserData.hpp"
 
 PublicUserData::PublicUserData()
 {
@@ -31,7 +31,6 @@ string PublicUserData::getBio() const
 {
     return _bio;
 }
-
 void PublicUserData::setBio(const string &bio)
 {
     _bio = bio;
@@ -65,11 +64,10 @@ bool PublicUserData::follow(PublicUserData* user)
     unsigned int aux = _following.size();
     for(int i=0;i<aux;i++){
         if(_following[i] == user){
-            return true;
+            _following.push_back(user);
         }
     }
 
-    _following.push_back(user);
     if(aux < _following.size()){
         return true;
     }else{

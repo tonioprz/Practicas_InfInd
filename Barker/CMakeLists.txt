@@ -38,9 +38,9 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
 endif()
 
 
-add_library(BarkerLib User.cpp User.h PublicUserData.h PublicUserData.cpp PrivateUserData.h PrivateUserData.cpp
-            Manager.h Manager.cpp Publication.h Publication.cpp Bark.h Bark.cpp Rebark.h Rebark.cpp
-            Reply.h Reply.cpp)
+add_library(BarkerLib User.cpp User.hpp PublicUserData.hpp PublicUserData.cpp PrivateUserData.hpp PrivateUserData.cpp
+                                        Manager.hpp Manager.cpp
+                                        Publication.hpp Publication.cpp Bark.hpp Bark.cpp Rebark.hpp Rebark.cpp Reply.hpp Reply.cpp)
 
 add_subdirectory(tests)
 

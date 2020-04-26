@@ -1,20 +1,35 @@
-#include "Manager.h"
+#include "Manager.hpp"
 
 Manager::Manager()
 {
-//Inicializacion vector users
     _currentUser = -1;
-    _users[_currentUser] = nullptr;
 }
 
-Manager::~Manager(){}
+Manager::~Manager(){
+    User* aux;
+    for(int i=0; i < _users.size(); i++){
+        aux = _users[i];
+        _users.erase(_users.begin()+i);
+        delete aux;
+    }
+}
 
 bool Manager::createUser(const string email, const string password, const string username, const string bio)
 {
     unsigned int aux =  _users.size();
+    User* newUser = new User(email, password, username, bio);
 
-    User *newUser = new User(email, password, username, bio);
-    _users.push_back(newUser);
+    if(_users.size() == 0){
+        _users.push_back(newUser);
+        return true;
+    } else{
+        for(int i=0; i < _users.size(); i++){
+            if(newUser->getEmail() == _users[i]->getEmail()){
+                return false;
+            }
+        }
+        _users.push_back(newUser);
+    }
 
     if(aux < _users.size()){
         return true;
@@ -26,12 +41,14 @@ bool Manager::createUser(const string email, const string password, const string
 
 vector<PublicUserData*> Manager::showUsers()
 {
-    vector<PublicUserData*> aux;
+    vector<PublicUserData*> vectorPUD;
+    PublicUserData* aux;
 
     for(unsigned int i=0; i < _users.size(); i++){
-        aux.push_back(_users[i]);
+        aux = _users[i];
+        vectorPUD.push_back(aux);
     }
-    return aux;
+    return vectorPUD;
 }
 
 PublicUserData* Manager::showUser(string username)
@@ -50,25 +67,21 @@ bool Manager::login(string email, string password)
 {
     User* usuario = nullptr;
 
-    for(unsigned int i=0; i < _users.size(); i++){
-        if(email == _users[i]->getEmail()){
-            if(i != _currentUser){
-            usuario = _users[i];
-            if(usuario->getPassword() == password){
-                _currentUser = i;
-                continue;
-                }
-            }
-        }
-    }
-
-    if(usuario != nullptr){
-        return true;
-    }
-    else{
+    if(isLogged()){
         return false;
     }
 
+    for(unsigned int i=0; i < _users.size(); i++){
+        if(email == _users[i]->getEmail()){
+            usuario = _users[i];
+            if(usuario->getPassword() == password){
+                _currentUser = i;
+                return true;
+            }else{
+                return false;
+                }
+            }
+        }
 }
 
 bool Manager::isLogged()
@@ -82,6 +95,10 @@ bool Manager::isLogged()
 
 bool Manager::logout()
 {
+    if(!isLogged()){
+        return false;
+    }
+
     _currentUser = -1;
 
     if(_currentUser == -1){
@@ -104,17 +121,23 @@ User* Manager::getCurrentUser()
 
 bool Manager::editEmail(string nuevo_email)
 {
-    string email = _users[_currentUser]->getEmail();
-    _users[_currentUser]->setEmail(nuevo_email);
-    if(nuevo_email != email){
-        return true;
-    }else{
+    if(!isLogged()){
         return false;
     }
+
+    for(int i=0; i < _users.size(); i++){
+        if(_users[i]->getEmail() == nuevo_email){
+            return false;
+        }
+    }
+    _users[_currentUser]->setEmail(nuevo_email);
 }
 
 bool Manager::editPassword(string nueva_password)
 {
+    if(!isLogged()){
+        return false;
+    }
     string password = _users[_currentUser]->getPassword();
     _users[_currentUser]->setPassword(nueva_password);
     if(nueva_password != password){
@@ -126,17 +149,23 @@ bool Manager::editPassword(string nueva_password)
 
 bool Manager::editUsername(string nuevo_username)
 {
-    string username = _users[_currentUser]->getUsername();
-    _users[_currentUser]->setUsername(nuevo_username);
-    if(nuevo_username != username){
-        return true;
-    }else{
+    if(!isLogged()){
         return false;
     }
+
+    for(int i=0; i < _users.size(); i++){
+        if(_users[i]->getUsername() == nuevo_username){
+            return false;
+        }
+    }
+    _users[_currentUser]->setUsername(nuevo_username);
 }
 
 bool Manager::editBio(string nueva_bio)
 {
+    if(!isLogged()){
+        return false;
+    }
     string bio = _users[_currentUser]->getBio();
     _users[_currentUser]->setBio(nueva_bio);
     if(nueva_bio != bio){
@@ -148,18 +177,43 @@ bool Manager::editBio(string nueva_bio)
 
 bool Manager::eraseCurrentUser()
 {
-    User* ptr = _users[_currentUser];
-    delete ptr;
+    if(!isLogged()){
+        return false;
+    }
+    User* aux = _users[_currentUser];
     _users.erase(_users.begin()+_currentUser);
+    delete aux;
+    _currentUser=-1;
+    return true;
 }
 
 bool Manager::followUser(const string username)
 {
+    if(!isLogged()){
+        return false;
+    }
 
+    PublicUserData* aseguir = nullptr;
+
+    for(int i=0; i < _users.size(); i++){
+        if(_users[i]->getUsername() == username){
+            aseguir = _users[i];
+            continue;
+        }
+    }
+    if(aseguir != nullptr){
+    return _users[_currentUser]->follow(aseguir);
+    }
+    else{
+        return false;
+    }
 }
 
 bool Manager::unfollowUser(const string username)
 {
+    if(!isLogged()){
+        return false;
+    }
 
 }
 
