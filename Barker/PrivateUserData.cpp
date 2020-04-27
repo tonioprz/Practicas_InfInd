@@ -1,16 +1,16 @@
 #include "PrivateUserData.hpp"
 
-PrivateUserData::PrivateUserData(){
-
+PrivateUserData::PrivateUserData(){ //Constructor por defecto (privado)
 }
 
-PrivateUserData::~PrivateUserData(){}
+PrivateUserData::~PrivateUserData(){} //Destructor
 
-PrivateUserData::PrivateUserData(const string &email, const string &pass){
+PrivateUserData::PrivateUserData(const string &email, const string &pass){//Constructor parametrizado
     _email = email;
     _password = pass;
 }
 
+//A continuación getters y setters:
 string PrivateUserData::getPassword() const
 {
     return _password;

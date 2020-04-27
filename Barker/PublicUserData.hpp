@@ -8,9 +8,10 @@ using namespace std;
 class PublicUserData
 {
 private:
+    PublicUserData();
 
 protected:
-    PublicUserData();
+
 
     string _username;
     string _bio;

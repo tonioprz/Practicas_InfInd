@@ -5,9 +5,9 @@ using namespace std;
 class PrivateUserData
 {
 private:
+    PrivateUserData();
 
 protected:
-    PrivateUserData();
 
     PrivateUserData(const string &email, const string &pass);
     string _email;
