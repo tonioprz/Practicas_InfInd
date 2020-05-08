@@ -3,7 +3,10 @@
 #include<iostream>
 #include<vector>
 
+
 using namespace std;
+
+class Publication;
 
 class PublicUserData
 {
@@ -20,6 +23,9 @@ protected:
     vector<PublicUserData*> _following;
 
     PublicUserData(const string &username, const string &bio);
+
+    vector<Publication*> _publications;
+
     ~PublicUserData();
 
 public:
@@ -38,6 +44,8 @@ public:
 
     bool follow(PublicUserData* user);
     bool unfollow(PublicUserData* user);
+
+    vector<Publication*> getPublications();
 };
 
 #endif // PUBLICUSERDATA_H

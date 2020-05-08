@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/u/Practicas_infind/Barker/Manager.hpp
+iostream
+-
+vector
+-
+User.hpp
+/home/u/Practicas_infind/Barker/User.hpp
+
+/home/u/Practicas_infind/Barker/PrivateUserData.hpp
+iostream
+-
+
+/home/u/Practicas_infind/Barker/PublicUserData.hpp
+iostream
+-
+vector
+-
+
+/home/u/Practicas_infind/Barker/User.hpp
+PublicUserData.hpp
+/home/u/Practicas_infind/Barker/PublicUserData.hpp
+PrivateUserData.hpp
+/home/u/Practicas_infind/Barker/PrivateUserData.hpp
+iostream
+-
+
+/home/u/Practicas_infind/Barker/main.cpp
+PublicUserData.hpp
+/home/u/Practicas_infind/Barker/PublicUserData.hpp
+PrivateUserData.hpp
+/home/u/Practicas_infind/Barker/PrivateUserData.hpp
+User.hpp
+/home/u/Practicas_infind/Barker/User.hpp
+Manager.hpp
+/home/u/Practicas_infind/Barker/Manager.hpp
+iostream
+-
+

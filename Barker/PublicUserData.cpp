@@ -1,4 +1,5 @@
 #include "PublicUserData.hpp"
+#include"Publication.hpp"
 
 PublicUserData::PublicUserData()
 {//Constructor por defecto (privado)
@@ -92,4 +93,9 @@ bool PublicUserData::unfollow(PublicUserData *user)
     }else{
         return false;
     }
+}
+
+vector<Publication *> PublicUserData::getPublications()
+{
+    return _publications;
 }
