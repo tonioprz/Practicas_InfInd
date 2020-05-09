@@ -1,39 +1,33 @@
 #include "Publication.hpp"
 
-Publication::~Publication() {}
-
+//Getters and Setters
 int Publication::getId()
-{
-    return _id;
-}
-
-unsigned long Publication::getTime()
-{
-    return _time;
-}
-
-PublicUserData *Publication::getUser()
-{
-    return _user;
-}
+{return _id;}
 
 void Publication::setId(int id)
-{
-    _id = id;
-}
+{ _id = id;}
+
+unsigned long Publication::getTime()
+{return _time;}
 
 void Publication::setTime(unsigned long time)
-{
-    _time = time;
-}
+{_time = time;}
 
-void Publication::setUser(PublicUserData *user)
+PublicUserData* Publication::getUser()
+{return _user;}
+
+void Publication::setUser(PublicUserData* user)
+{_user = user;}
+
+//Destructor
+Publication::~Publication(){}
+
+//Constructor parametrizado
+Publication::Publication(int id, unsigned long time, PublicUserData* user)
 {
+    _id = id;
+    _time = time;
     _user = user;
 }
 
-Publication::Publication(int id, unsigned long time, PublicUserData *user)
-{
-
-}
 

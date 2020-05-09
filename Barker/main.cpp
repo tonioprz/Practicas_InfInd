@@ -1,10 +1,9 @@
-#include "PublicUserData.hpp"
-#include "PrivateUserData.hpp"
-#include "User.hpp"
-#include "Manager.hpp"
 #include <iostream>
+
+using namespace std;
 
 int main()
 {
+    cout << "Hello World!" << endl;
     return 0;
 }

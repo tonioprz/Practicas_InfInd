@@ -46,6 +46,7 @@ public:
     bool unfollow(PublicUserData* user);
 
     vector<Publication*> getPublications();
+
 };
 
 #endif // PUBLICUSERDATA_H
