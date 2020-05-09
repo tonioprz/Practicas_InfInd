@@ -10,7 +10,7 @@ void Publication::setId(int id)
 unsigned long Publication::getTime()
 {return _time;}
 
-void Publication::setTime(unsigned long time)
+void Publication::setTime(unsigned long int time)
 {_time = time;}
 
 PublicUserData* Publication::getUser()

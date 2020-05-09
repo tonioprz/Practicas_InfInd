@@ -14,7 +14,7 @@ protected:
     unsigned long _time;
     PublicUserData* _user;
 
-    Publication(int id, unsigned long time, PublicUserData* user);
+    Publication(int id, unsigned long int time, PublicUserData* user);
 
 public:
     ~Publication();
@@ -24,7 +24,7 @@ public:
     PublicUserData* getUser();
 
     void setId(int id);
-    void setTime(unsigned long time);
+    void setTime(unsigned long int time);
     void setUser(PublicUserData* user);
 
 };

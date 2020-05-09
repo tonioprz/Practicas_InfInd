@@ -3,6 +3,11 @@
 #include <iostream>
 #include <vector>
 #include "User.hpp"
+#include "ctime"
+#include "Bark.hpp"
+#include "Rebark.hpp"
+#include "Reply.hpp"
+
 using namespace std;
 
 class Manager
@@ -27,10 +32,17 @@ public:
     bool followUser(const string username);
     bool unfollowUser(const string username);
 
+    vector<Publication*> getUserFeed(string user);
+    vector<Publication*> getTimeline();
+
+    bool createBark(string text);
+    bool createRebark(int id, string text);
+    bool createReply(int id, string text);
 
 private:
     vector<User*> _users;
     int _currentUser;
+    int _idultimo = 0;
 };
 
 #endif // MANAGER_H

@@ -254,3 +254,61 @@ bool Manager::unfollowUser(const string username)
     //Si no se ha conseguido hacer unfollow en el bucle anterior, se devuelve false;
     return false;
 }
+
+vector<Publication *> Manager::getUserFeed(string user)
+{
+    for(int i = 0; i < _users.size(); i++){
+        if(_users[i]->getUsername() == user){
+            return _users[i]->getPublications();
+        }
+    }
+}
+
+vector<Publication*> Manager::getTimeline()
+{
+    if(!isLogged()){
+        vector<Publication*> vacio;
+        return vacio;
+    }
+    vector<PublicUserData*> seguidos = _users[_currentUser]->getFollowing();
+
+    vector<Publication*> timeline;
+    vector<Publication*> aux;
+
+
+    for(int i = 0; i < seguidos.size(); i++){
+        aux = seguidos[i]->getPublications();
+        for(int j=0; j < aux.size(); j++){
+            timeline.push_back(aux[j]);
+        }
+    }
+}
+
+bool Manager::createBark(string text)
+{
+    if(!isLogged()){//Se comprueba que haya un usuario logeado
+        return false;
+    }
+    unsigned long int tiempo = time(nullptr);
+    _idultimo++;
+    Bark* bark = new Bark(_idultimo, tiempo, _users[_currentUser], text);
+
+    _users[_currentUser]->addPublication(bark);
+    return true;
+}
+
+bool Manager::createRebark(int id, string text)
+{
+    if(!isLogged()){//Se comprueba que haya un usuario logeado
+        return false;
+    }
+    unsigned long int tiempo = time(nullptr);
+
+
+
+    _idultimo++;
+    Rebark* bark = new Rebark(_idultimo, tiempo, _users[_currentUser], text);
+
+    _users[_currentUser]->addPublication(bark);
+    return true;
+}

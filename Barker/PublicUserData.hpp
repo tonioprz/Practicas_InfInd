@@ -47,6 +47,8 @@ public:
 
     vector<Publication*> getPublications();
 
+    bool addPublication(Publication* publi);
+    bool removePublication(int id);
 };
 
 #endif // PUBLICUSERDATA_H

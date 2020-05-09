@@ -99,3 +99,25 @@ vector<Publication *> PublicUserData::getPublications()
 {
     return _publications;
 }
+
+bool PublicUserData::addPublication(Publication *publi)
+{
+    for(int i=0; i < _publications.size(); i++){
+        if(publi->getId() == _publications[i]->getId()){
+            return false;
+        }
+    }
+    _publications.push_back(publi);
+    return true;
+}
+
+bool PublicUserData::removePublication(int id)
+{
+    for(int i=0; i < _publications.size(); i++){
+        if(id == _publications[i]->getId()){
+            _publications.erase(_publications.begin()+i);
+            return true;
+        }
+    }
+    return false;
+}
