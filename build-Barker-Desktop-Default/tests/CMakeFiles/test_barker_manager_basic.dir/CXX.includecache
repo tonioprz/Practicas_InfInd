@@ -23,6 +23,10 @@ ctime
 /home/u/Practicas_infind/Barker/ctime
 Bark.hpp
 /home/u/Practicas_infind/Barker/Bark.hpp
+Rebark.hpp
+/home/u/Practicas_infind/Barker/Rebark.hpp
+Reply.hpp
+/home/u/Practicas_infind/Barker/Reply.hpp
 
 /home/u/Practicas_infind/Barker/PrivateUserData.hpp
 iostream
@@ -41,6 +45,14 @@ vector
 -
 PublicUserData.hpp
 /home/u/Practicas_infind/Barker/PublicUserData.hpp
+
+/home/u/Practicas_infind/Barker/Rebark.hpp
+Publication.hpp
+/home/u/Practicas_infind/Barker/Publication.hpp
+
+/home/u/Practicas_infind/Barker/Reply.hpp
+Publication.hpp
+/home/u/Practicas_infind/Barker/Publication.hpp
 
 /home/u/Practicas_infind/Barker/User.hpp
 PublicUserData.hpp

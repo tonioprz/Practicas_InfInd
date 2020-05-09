@@ -6,6 +6,8 @@ tests/CMakeFiles/test_barker_manager_basic.dir/test_barker_manager_basic.cpp.o: 
 tests/CMakeFiles/test_barker_manager_basic.dir/test_barker_manager_basic.cpp.o: /home/u/Practicas_infind/Barker/PrivateUserData.hpp
 tests/CMakeFiles/test_barker_manager_basic.dir/test_barker_manager_basic.cpp.o: /home/u/Practicas_infind/Barker/PublicUserData.hpp
 tests/CMakeFiles/test_barker_manager_basic.dir/test_barker_manager_basic.cpp.o: /home/u/Practicas_infind/Barker/Publication.hpp
+tests/CMakeFiles/test_barker_manager_basic.dir/test_barker_manager_basic.cpp.o: /home/u/Practicas_infind/Barker/Rebark.hpp
+tests/CMakeFiles/test_barker_manager_basic.dir/test_barker_manager_basic.cpp.o: /home/u/Practicas_infind/Barker/Reply.hpp
 tests/CMakeFiles/test_barker_manager_basic.dir/test_barker_manager_basic.cpp.o: /home/u/Practicas_infind/Barker/User.hpp
 tests/CMakeFiles/test_barker_manager_basic.dir/test_barker_manager_basic.cpp.o: /home/u/Practicas_infind/Barker/tests/test_barker_manager_basic.cpp
 tests/CMakeFiles/test_barker_manager_basic.dir/test_barker_manager_basic.cpp.o: googletest-src/googletest/include/gtest/gtest-death-test.h

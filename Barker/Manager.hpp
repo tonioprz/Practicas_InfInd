@@ -42,7 +42,7 @@ public:
 private:
     vector<User*> _users;
     int _currentUser;
-    int _idultimo = 0;
+    int _idultimo;
 };
 
 #endif // MANAGER_H

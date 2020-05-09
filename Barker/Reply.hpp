@@ -14,12 +14,12 @@ public:
 
     Publication* getPublication();
     void setPublication(Publication* publi);
-
     Reply(int id, unsigned long int time, Publication* publication, PublicUserData* user, string reply);
 
     ~Reply();
 
 protected:
+
     string _text;
     Publication* _publication;
 };

@@ -4,6 +4,7 @@ Manager::Manager() //Constructor de Manager
 {
     //Cuando no hay ningún usuario logeado, la variable _currentUser vale -1
     _currentUser = -1;
+    _idultimo = 0;
 }
 
 Manager::~Manager(){ //Destructor de Manager
@@ -262,6 +263,7 @@ vector<Publication *> Manager::getUserFeed(string user)
             return _users[i]->getPublications();
         }
     }
+
 }
 
 vector<Publication*> Manager::getTimeline()
@@ -300,15 +302,55 @@ bool Manager::createBark(string text)
 bool Manager::createRebark(int id, string text)
 {
     if(!isLogged()){//Se comprueba que haya un usuario logeado
-        return false;
+                return false;
     }
     unsigned long int tiempo = time(nullptr);
+    vector<Publication*> aux;
+    Publication* publi;
+    for(unsigned int i=0; i<_users.size(); i++){
+        aux = _users[i]->getPublications();
+        for(unsigned int j=0; j<aux.size(); j++){
+            if(aux[i]->getId() == id){
+                publi = aux[i];
+            }
+        }
+    }
 
-
+    if(publi == nullptr){
+        return false;
+    }
 
     _idultimo++;
-    Rebark* bark = new Rebark(_idultimo, tiempo, _users[_currentUser], text);
+    Rebark* rebark = new Rebark(_idultimo, tiempo, publi,_users[_currentUser], text);
 
-    _users[_currentUser]->addPublication(bark);
+    _users[_currentUser]->addPublication(rebark);
+    return true;
+}
+
+bool Manager::createReply(int id, string text)
+{
+    if(!isLogged()){//Se comprueba que haya un usuario logeado
+                return false;
+    }
+    unsigned long int tiempo = time(nullptr);
+    vector<Publication*> aux;
+    Publication* publi;
+    for(unsigned int i=0; i<_users.size(); i++){
+        aux = _users[i]->getPublications();
+        for(unsigned int j=0; j<aux.size(); j++){
+            if(aux[i]->getId() == id){
+                publi = aux[i];
+            }
+        }
+    }
+
+    if(publi == nullptr){
+        return false;
+    }
+
+    _idultimo++;
+    Reply* reply = new Reply(_idultimo, tiempo, publi,_users[_currentUser], text);
+
+    _users[_currentUser]->addPublication(reply);
     return true;
 }

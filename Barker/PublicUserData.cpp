@@ -102,11 +102,17 @@ vector<Publication *> PublicUserData::getPublications()
 
 bool PublicUserData::addPublication(Publication *publi)
 {
+    if(publi->getUser() != this){
+        return false;
+    }
+
     for(int i=0; i < _publications.size(); i++){
         if(publi->getId() == _publications[i]->getId()){
             return false;
         }
     }
+
+
     _publications.push_back(publi);
     return true;
 }

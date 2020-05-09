@@ -7,6 +7,8 @@ tests/CMakeFiles/test_barker_manager_basic.dir/test_barker_manager_basic.cpp.o
  /home/u/Practicas_infind/Barker/PrivateUserData.hpp
  /home/u/Practicas_infind/Barker/PublicUserData.hpp
  /home/u/Practicas_infind/Barker/Publication.hpp
+ /home/u/Practicas_infind/Barker/Rebark.hpp
+ /home/u/Practicas_infind/Barker/Reply.hpp
  /home/u/Practicas_infind/Barker/User.hpp
  /home/u/Practicas_infind/Barker/tests/test_barker_manager_basic.cpp
  googletest-src/googletest/include/gtest/gtest-death-test.h
