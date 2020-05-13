@@ -284,6 +284,7 @@ vector<Publication*> Manager::getTimeline()
             timeline.push_back(aux[j]);
         }
     }
+    return timeline;
 }
 
 bool Manager::createBark(string text)
@@ -338,8 +339,8 @@ bool Manager::createReply(int id, string text)
     for(unsigned int i=0; i<_users.size(); i++){
         aux = _users[i]->getPublications();
         for(unsigned int j=0; j<aux.size(); j++){
-            if(aux[i]->getId() == id){
-                publi = aux[i];
+            if(aux[j]->getId() == id){
+                publi = aux[j];
             }
         }
     }
