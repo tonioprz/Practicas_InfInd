@@ -26,6 +26,10 @@ public:
     void setId(int id);
     void setTime(unsigned long int time);
     void setUser(PublicUserData* user);
+    
+    //Funcion para saber qué tipo de publicación es
+    // b = Bark, r = Rebark, p = Reply
+    virtual char publicationType();
 
 };
 

@@ -16,6 +16,9 @@ public:
     void setPublication(Publication* publi);
     Reply(int id, unsigned long int time, Publication* publication, PublicUserData* user, string reply);
 
+    char publicationType();
+
+
     ~Reply();
 
 protected:

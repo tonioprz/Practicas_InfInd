@@ -26,6 +26,11 @@ Reply::Reply(int id, unsigned long time,Publication *publication,
     _publication = publication;
 }
 
+char Reply::publicationType()
+{
+    return 'p';
+}
+
 Publication *Reply::getPublication()
 {
     return _publication;

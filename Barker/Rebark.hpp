@@ -16,6 +16,9 @@ public:
     void setPublication(Publication* publi);
     Rebark(int id, unsigned long int time, Publication* publication, PublicUserData* user, string rebark);
 
+    char publicationType();
+
+
     ~Rebark();
 
 protected:

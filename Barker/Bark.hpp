@@ -17,8 +17,9 @@ public:
 
     Bark(int id, unsigned long int time, PublicUserData* user, string text);
 
-    ~Bark();
+    char publicationType();
 
+    ~Bark();
 };
 
 #endif // BARK_H

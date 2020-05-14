@@ -39,6 +39,9 @@ public:
     bool createRebark(int id, string text);
     bool createReply(int id, string text);
 
+    bool saveToFile(string archivo);
+    bool loadFromFile(string archivo);
+    
 private:
     vector<User*> _users;
     int _currentUser;

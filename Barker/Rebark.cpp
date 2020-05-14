@@ -37,4 +37,9 @@ Rebark::Rebark(int id, unsigned long time, Publication *publication,
     _publication = publication;
 }
 
+char Rebark::publicationType()
+{
+    return 'r';
+}
+
 Rebark::~Rebark(){} //Destructor

@@ -18,6 +18,11 @@ Bark::Bark(int id, unsigned long time, PublicUserData* user, string bark):Public
     _text = bark;
 }
 
+char Bark::publicationType()
+{
+    return 'b';
+}
+
 string Bark::getBark()
 {
     //Se concatena una string con el formato deseado

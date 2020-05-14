@@ -1,4 +1,5 @@
 #include "Manager.hpp"
+#include <fstream>
 
 Manager::Manager() //Constructor de Manager
 {
@@ -354,4 +355,68 @@ bool Manager::createReply(int id, string text)
 
     _users[_currentUser]->addPublication(reply);
     return true;
+}
+
+bool Manager::saveToFile(string archivo)
+{
+   ofstream fs(archivo);
+   fs << "Fichero de usuarios y publicaciones de Baker" << endl;
+
+   //Se guardan los usuarios
+   for(int i=0; i < _users.size(); i++){
+
+       fs << "#" << endl; // Inicio de usuario
+
+       // Se añaden los datos del usuario:
+       fs << _users[i]->getEmail() << endl;
+       fs << _users[i]->getPassword() << endl;
+       fs << _users[i]->getUsername() << endl;
+       fs << _users[i]->getBio() << endl;
+       fs << _users[i]->getFollowers() << endl;
+
+       // Se añade el username de los usuarios seguidos tras following"
+       fs << "following:" << endl;
+       vector<PublicUserData*> s = _users[i]->getFollowing();
+       for(int j=0; j < s.size(); j++){
+           fs << s[j]->getUsername() << endl;
+       }
+
+       // Se añade el id de cada publicación
+       fs << "publications:" << endl;
+       vector<Publication*> p = _users[i]->getPublications();
+       for(int j=0; j < p.size(); j++){
+           fs << p[j]->getId() << endl;
+       }
+
+       fs << "#" << endl; // Fin del usuario
+   }
+
+   // Se guardan las publicaciones
+   for(int i=0; i < _users.size(); i++){
+       vector<Publication*> p = _users[i]->getPublications();
+       for(int j=0; j < p.size(); j++){
+           //Se comprueba primero el tipo de publicacion
+           char tipo = p[j]->publicationType();
+           if(tipo == 'b'){
+               fs << "$Bark" << endl;
+           }
+           if(tipo == 'r'){
+               fs << "$Rebark" << endl;
+           }
+           if(tipo == 'p'){
+               fs << "$Reply" << endl;
+           }
+           fs << p[j]->getId() << endl;
+           fs << p[j]->getTime() << endl;
+           if((tipo == 'r') || (tipo == 'p')){
+           }
+
+
+       }
+   }
+}
+
+bool Manager::loadFromFile(string archivo)
+{
+
 }
