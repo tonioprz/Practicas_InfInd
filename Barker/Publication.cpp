@@ -1,5 +1,16 @@
 #include "Publication.hpp"
 
+//Destructor
+Publication::~Publication(){}
+
+//Constructor parametrizado
+Publication::Publication(int id, unsigned long time, PublicUserData* user)
+{
+    _id = id;
+    _time = time;
+    _user = user;
+}
+
 //Getters and Setters
 int Publication::getId()
 {return _id;}
@@ -19,15 +30,5 @@ PublicUserData* Publication::getUser()
 void Publication::setUser(PublicUserData* user)
 {_user = user;}
 
-//Destructor
-Publication::~Publication(){}
-
-//Constructor parametrizado
-Publication::Publication(int id, unsigned long time, PublicUserData* user)
-{
-    _id = id;
-    _time = time;
-    _user = user;
-}
-
+char Publication::publicationType(){}
 
