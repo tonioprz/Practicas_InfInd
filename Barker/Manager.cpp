@@ -56,7 +56,7 @@ vector<PublicUserData*> Manager::showUsers()
 
 PublicUserData* Manager::showUser(string username)
 {
-    PublicUserData* aux;
+    PublicUserData* aux = nullptr;
     //Caso idéntico al anterior, simplemente se busca el usuario en concreto y se devuelve
     for(unsigned int i=0; i < _users.size(); i++){
         if(username == _users[i]->getUsername()){
@@ -408,15 +408,46 @@ bool Manager::saveToFile(string archivo)
            }
            fs << p[j]->getId() << endl;
            fs << p[j]->getTime() << endl;
-           if((tipo == 'r') || (tipo == 'p')){
+           if(tipo == 'r'){
+               // Usaremos static_cast para acceder a la información del Rebark
+                fs << (static_cast<Rebark*>(p[j])->getPublication())->getId() << endl;
+                fs << (p[j]->getUser())->getUsername() << endl;
+                fs << static_cast<Rebark*>(p[j])->getText() << endl;
            }
-
-
+           if(tipo == 'p'){
+               // Usaremos static_cast para acceder a la información del Rebark
+                fs << (static_cast<Reply*>(p[j])->getPublication())->getId() << endl;
+                fs << (p[j]->getUser())->getUsername() << endl;
+                fs << static_cast<Reply*>(p[j])->getText() << endl;
+           }
+           if(tipo == 'b'){
+               fs << (p[j]->getUser())->getUsername() << endl;
+               fs << static_cast<Bark*>(p[j])->getText() << endl;
+           }
        }
    }
+   fs.close();
 }
 
 bool Manager::loadFromFile(string archivo)
 {
+    // En primer lugar, borramos la base de datos existente para evitar coincidencias
+    // Primero borramos las publicaciones:
+    for(int i = 0; i < _users.size(); i++){
+        vector<Publication*> p = _users[i]->getPublications();
+        Publication* pub;
+        for(int j = 0; j < p.size(); j++){
+            pub = p[j];
+            _users[i]->removePublication(p[j]->getId());
+            delete pub;
+        }
+    }
 
+    // Luego se borra el vector de usuarios:
+    User* aux; //Variable auxiliar tipo puntero a User
+    for(int i=0; i < _users.size(); i++){ //Se recorre el vector de todos los usuarios
+        aux = _users[i]; //Se asigna a la variable auxiliar
+        _users.erase(_users.begin()+i); //Se borra del vector
+        delete aux; //Se elimina el contenido del puntero
+    }
 }

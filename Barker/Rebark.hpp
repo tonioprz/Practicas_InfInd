@@ -18,7 +18,6 @@ public:
 
     char publicationType();
 
-
     ~Rebark();
 
 protected:

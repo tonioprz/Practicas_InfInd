@@ -30,7 +30,6 @@ public:
     //Funcion para saber qué tipo de publicación es
     // b = Bark, r = Rebark, p = Reply
     virtual char publicationType();
-
 };
 
 #endif // PUBLICATION_H
