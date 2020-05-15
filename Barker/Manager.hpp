@@ -8,7 +8,7 @@
 #include "Rebark.hpp"
 #include "Reply.hpp"
 #include <fstream>
-
+#include <string>
 
 using namespace std;
 

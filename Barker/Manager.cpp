@@ -457,7 +457,7 @@ bool Manager::loadFromFile(string archivo)
         delete aux; //Se elimina el contenido del puntero
     }
 
-    ifstream fs(archivo, ios::in);
+    ifstream fs(archivo);
 
     //Se comprueba si se ha abierto correctamente el archivo
     if(fs.bad()){
@@ -465,41 +465,144 @@ bool Manager::loadFromFile(string archivo)
         return false;
     }
 
+    //Introducimos una serie de variables que serán útiles de cara a la lectura del archivo
+    char cadena[128];
     string linea;
     string email;
     string password;
     string username;
     string bio;
-    vector<vector<string>> following;
-    vector<vector<string>> idpubs;
+    vector<vector<string>> followingtotal;
+    vector<vector<string>> idpubstotal;
     int usuario = 0;
+    bool finusers = false;
+    string id;
+    string time;
+    string idref;
+    string userpub;
+    string text;
+    Publication* pub;
+
 
     while(!fs.eof()){
-        getline(fs,linea);
+        fs >> cadena;
+        linea = cadena;
         if(linea == "#") //Es un usuario
         {// Obtenemos sus datos
-            getline(fs, email);
-            getline(fs, password);
-            getline(fs, username);
-            getline(fs, bio);
+            fs >> cadena;
+            email = cadena;
+            fs >> cadena;
+            password = cadena;
+            fs >> cadena;
+            username = cadena;
+            fs.getline(cadena, 128);
+            fs.getline(cadena, 128);
+            bio = cadena;
             createUser(email,password,username,bio);
-            getline(fs, linea); //numero de followers (innecesario)
-            getline(fs, linea); //following
+            fs >> cadena; //numero de followers (innecesario)
+            fs >> cadena; //following
+            linea = cadena;
+            vector<string> following;
+            vector<string> idpubs;
             //Mientras la siguiente línea no sea publications: serán nuevos usuarios seguidos
             while(linea != "publications:"){
-                getline(fs, linea);
-                if(linea != "publications:") {following[usuario].push_back(linea);}
+                fs >> cadena;
+                linea = cadena;
+                if(linea != "publications:") {following.push_back(linea);}
             }
             //A continuación tendremos los ids de las publicaciones hasta que aparezca un #
             while(linea != "#"){
-                getline(fs, linea);
-                if(linea != "#") {idpubs[usuario].push_back(linea);}
+                fs >> cadena;
+                linea = cadena;
+                if(linea != "#") {idpubs.push_back(linea);}
             }
+            followingtotal.push_back(following);
+            idpubstotal.push_back(idpubs);
             usuario++;
         }
-        if(linea.compare(0,1, "$")){
 
+        // Cuando aparece el primer $ significa que no habrá más usuarios
+        // Por lo tanto, comenzaremos a seguir los unos a los otros
+        if((linea.compare(0,1, "$") == 0) && !finusers){
+            finusers = true;
+            for(int i=0; i < _users.size(); i++){ // Para cada usuario
+                for(int j=0; j < followingtotal[i].size(); j++){ // Cada username seguido
+                    string user = followingtotal[i][j];
+                    for(int k=0; k < _users.size(); k++){ // Buscamos la PUD de ese username
+                        if(_users[k]->getUsername() == user){
+                            _users[i]->follow(_users[k]);
+                        }
+                    }
+                }
+            }
+        }
+
+        if(linea == "$Bark"){
+            //Cargamos los datos del Bark
+            getline(fs, id);
+            getline(fs, time);
+            getline(fs, userpub);
+            getline(fs, text);
+            //Buscamos al usuario
+            for(int i=0; i < _users.size(); i++){
+                if(_users[i]->getUsername() == userpub){
+                    // Añadimos el Bark
+                    Bark* b = new Bark(stoi(id), stol(time),_users[i],text);
+                    _users[i]->addPublication(b);
+                }
+            }
+        }
+
+        if(linea == "$Rebark"){
+            //Cargamos los datos del Rebark
+            getline(fs, id);
+            getline(fs, time);
+            getline(fs, idref);
+            getline(fs, userpub);
+            getline(fs, text);
+            //Buscamos la publicación a la que hace referencia
+            for(int i=0; i < _users.size(); i++){
+                vector<Publication*> pubs = _users[i]->getPublications();
+                for(int j=0; j < pubs.size(); j++){
+                    if(pubs[j]->getId() == stoi(idref)){
+                        pub = pubs[j];
+                    }
+                }
+            }
+            //Buscamos al usuario
+            for(int i=0; i < _users.size(); i++){
+                if(_users[i]->getUsername() == userpub){
+                    Rebark* b = new Rebark(stoi(id), stol(time),pub,_users[i],text);
+                    _users[i]->addPublication(b);
+                }
+            }
+        }
+
+        if(linea == "$Reply"){
+            //Cargamos los datos del Reply
+            getline(fs, id);
+            getline(fs, time);
+            getline(fs, idref);
+            getline(fs, userpub);
+            getline(fs, text);
+            //Buscamos la publicación a la que hace referencia
+            for(int i=0; i < _users.size(); i++){
+                vector<Publication*> pubs = _users[i]->getPublications();
+                for(int j=0; j < pubs.size(); j++){
+                    if(pubs[j]->getId() == stoi(idref)){
+                        pub = pubs[j];
+                    }
+                }
+            }
+            //Buscamos al usuario
+            for(int i=0; i < _users.size(); i++){
+                if(_users[i]->getUsername() == userpub){
+                    Reply* b = new Reply(stoi(id), stol(time),pub,_users[i],text);
+                    _users[i]->addPublication(b);
+                }
+            }
         }
     }
+    fs.close();
+    return true;
 }
-
