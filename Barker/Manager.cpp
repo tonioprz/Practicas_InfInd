@@ -539,10 +539,16 @@ bool Manager::loadFromFile(string archivo)
 
         if(linea == "$Bark"){
             //Cargamos los datos del Bark
-            getline(fs, id);
-            getline(fs, time);
-            getline(fs, userpub);
-            getline(fs, text);
+            fs >> cadena;
+            id = cadena;
+            fs >> cadena;
+            time = cadena;
+            fs >> cadena;
+            userpub = cadena;
+            fs.getline(cadena, 128);
+            fs.getline(cadena, 128);
+            text = cadena;
+
             //Buscamos al usuario
             for(int i=0; i < _users.size(); i++){
                 if(_users[i]->getUsername() == userpub){
@@ -555,11 +561,18 @@ bool Manager::loadFromFile(string archivo)
 
         if(linea == "$Rebark"){
             //Cargamos los datos del Rebark
-            getline(fs, id);
-            getline(fs, time);
-            getline(fs, idref);
-            getline(fs, userpub);
-            getline(fs, text);
+            fs >> cadena;
+            id = cadena;
+            fs >> cadena;
+            time = cadena;
+            fs >> cadena;
+            idref = cadena;
+            fs >> cadena;
+            userpub = cadena;
+            fs.getline(cadena, 128);
+            fs.getline(cadena, 128);
+            text = cadena;
+
             //Buscamos la publicación a la que hace referencia
             for(int i=0; i < _users.size(); i++){
                 vector<Publication*> pubs = _users[i]->getPublications();
@@ -580,11 +593,18 @@ bool Manager::loadFromFile(string archivo)
 
         if(linea == "$Reply"){
             //Cargamos los datos del Reply
-            getline(fs, id);
-            getline(fs, time);
-            getline(fs, idref);
-            getline(fs, userpub);
-            getline(fs, text);
+            fs >> cadena;
+            id = cadena;
+            fs >> cadena;
+            time = cadena;
+            fs >> cadena;
+            idref = cadena;
+            fs >> cadena;
+            userpub = cadena;
+            fs.getline(cadena, 128);
+            fs.getline(cadena, 128);
+            text = cadena;
+
             //Buscamos la publicación a la que hace referencia
             for(int i=0; i < _users.size(); i++){
                 vector<Publication*> pubs = _users[i]->getPublications();

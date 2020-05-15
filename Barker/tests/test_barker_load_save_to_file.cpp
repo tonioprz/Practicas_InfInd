@@ -368,78 +368,78 @@ TEST_F(TestBarkerLoadSaveToFile, ManagerCanLoadState)
     Manager manager;
     ASSERT_TRUE(manager.loadFromFile("test_data.dat"));
 
-//    //-- Assemble data by hand:
-//    User test_user1(name1, password1, name1, bio1);
-//    User test_user2(name2, password2, name2, bio2);
-//    User test_user3(name3, password3, name3, bio3);
+    //-- Assemble data by hand:
+    User test_user1(name1, password1, name1, bio1);
+    User test_user2(name2, password2, name2, bio2);
+    User test_user3(name3, password3, name3, bio3);
 
-//    test_user2.follow(&test_user1);
-//    test_user1.increaseFollowers();
-//    test_user3.follow(&test_user1);
-//    test_user1.increaseFollowers();
-//    test_user3.follow(&test_user2);
-//    test_user2.increaseFollowers();
+    test_user2.follow(&test_user1);
+    test_user1.increaseFollowers();
+    test_user3.follow(&test_user1);
+    test_user1.increaseFollowers();
+    test_user3.follow(&test_user2);
+    test_user2.increaseFollowers();
 
-//    Bark bark1(0, 0, (PublicUserData*)&test_user1, text1);
-//    test_user1.addPublication(&bark1);
-//    Rebark bark2(1, 20, &bark1, (PublicUserData*)&test_user2, text2);
-//    Bark bark3(2, 40, (PublicUserData*)&test_user2, text4);
-//    test_user2.addPublication(&bark2);
-//    test_user2.addPublication(&bark3);
-//    Bark bark4(3, 60, (PublicUserData*)&test_user3, text5);
-//    Reply bark5(4, 80, &bark1, (PublicUserData*)&test_user3, text3);
-//    test_user3.addPublication(&bark4);
-//    test_user3.addPublication(&bark5);
+    Bark bark1(0, 0, (PublicUserData*)&test_user1, text1);
+    test_user1.addPublication(&bark1);
+    Rebark bark2(1, 20, &bark1, (PublicUserData*)&test_user2, text2);
+    Bark bark3(2, 40, (PublicUserData*)&test_user2, text4);
+    test_user2.addPublication(&bark2);
+    test_user2.addPublication(&bark3);
+    Bark bark4(3, 60, (PublicUserData*)&test_user3, text5);
+    Reply bark5(4, 80, &bark1, (PublicUserData*)&test_user3, text3);
+    test_user3.addPublication(&bark4);
+    test_user3.addPublication(&bark5);
 
-//    //-- Check users
-//    ASSERT_TRUE(manager.login(email1, password1));
-//    User* current = manager.getCurrentUser();
-//    EXPECT_EQ(email1, current->getEmail());
-//    EXPECT_EQ(password1, current->getPassword());
-//    EXPECT_EQ(name1, current->getUsername());
-//    EXPECT_EQ(bio1, current->getBio());
-//    EXPECT_EQ(2, current->getFollowers());
-//    EXPECT_EQ(0, current->getFollowing().size());
+    //-- Check users
+    ASSERT_TRUE(manager.login(email1, password1));
+    User* current = manager.getCurrentUser();
+    EXPECT_EQ(email1, current->getEmail());
+    EXPECT_EQ(password1, current->getPassword());
+    EXPECT_EQ(name1, current->getUsername());
+    EXPECT_EQ(bio1, current->getBio());
+    EXPECT_EQ(2, current->getFollowers());
+    EXPECT_EQ(0, current->getFollowing().size());
 
-//    std::vector<Publication*> pubs = manager.getCurrentUser()->getPublications();
-//    ASSERT_EQ(1, pubs.size());
-//    EXPECT_TRUE(IsBarkInVector(bark1, pubs));
+    std::vector<Publication*> pubs = manager.getCurrentUser()->getPublications();
+    ASSERT_EQ(1, pubs.size());
+    EXPECT_TRUE(IsBarkInVector(bark1, pubs));
 
-//    ASSERT_TRUE(manager.logout());
-
-
-//    ASSERT_TRUE(manager.login(email2, password2));
-//    current = manager.getCurrentUser();
-//    EXPECT_EQ(email2, current->getEmail());
-//    EXPECT_EQ(password2, current->getPassword());
-//    EXPECT_EQ(name2, current->getUsername());
-//    EXPECT_EQ(bio2, current->getBio());
-//    EXPECT_EQ(1, current->getFollowers());
-//    EXPECT_EQ(1, current->getFollowing().size());
-
-//    pubs = manager.getCurrentUser()->getPublications();
-//    ASSERT_EQ(2, pubs.size());
-//    EXPECT_TRUE(IsRebarkInVector(bark2, pubs));
-//    EXPECT_TRUE(IsBarkInVector(bark3, pubs));
-
-//    ASSERT_TRUE(manager.logout());
+    ASSERT_TRUE(manager.logout());
 
 
-//    ASSERT_TRUE(manager.login(email3, password3));
-//    current = manager.getCurrentUser();
-//    EXPECT_EQ(email3, current->getEmail());
-//    EXPECT_EQ(password3, current->getPassword());
-//    EXPECT_EQ(name3, current->getUsername());
-//    EXPECT_EQ(bio3, current->getBio());
-//    EXPECT_EQ(0, current->getFollowers());
-//    EXPECT_EQ(2, current->getFollowing().size());
+    ASSERT_TRUE(manager.login(email2, password2));
+    current = manager.getCurrentUser();
+    EXPECT_EQ(email2, current->getEmail());
+    EXPECT_EQ(password2, current->getPassword());
+    EXPECT_EQ(name2, current->getUsername());
+    EXPECT_EQ(bio2, current->getBio());
+    EXPECT_EQ(1, current->getFollowers());
+    EXPECT_EQ(1, current->getFollowing().size());
 
-//    pubs = manager.getCurrentUser()->getPublications();
-//    ASSERT_EQ(2, pubs.size());
-//    for (int i = 0; i < pubs.size(); i++)
-//        std::cout << pubs[i]->getTime() << std::endl;
-//    EXPECT_TRUE(IsBarkInVector(bark4, pubs));
-//    EXPECT_TRUE(IsReplyInVector(bark5, pubs));
+    pubs = manager.getCurrentUser()->getPublications();
+    ASSERT_EQ(2, pubs.size());
+    EXPECT_TRUE(IsRebarkInVector(bark2, pubs));
+    EXPECT_TRUE(IsBarkInVector(bark3, pubs));
 
-//    ASSERT_TRUE(manager.logout());
+    ASSERT_TRUE(manager.logout());
+
+
+    ASSERT_TRUE(manager.login(email3, password3));
+    current = manager.getCurrentUser();
+    EXPECT_EQ(email3, current->getEmail());
+    EXPECT_EQ(password3, current->getPassword());
+    EXPECT_EQ(name3, current->getUsername());
+    EXPECT_EQ(bio3, current->getBio());
+    EXPECT_EQ(0, current->getFollowers());
+    EXPECT_EQ(2, current->getFollowing().size());
+
+    pubs = manager.getCurrentUser()->getPublications();
+    ASSERT_EQ(2, pubs.size());
+    for (int i = 0; i < pubs.size(); i++)
+        std::cout << pubs[i]->getTime() << std::endl;
+    EXPECT_TRUE(IsBarkInVector(bark4, pubs));
+    EXPECT_TRUE(IsReplyInVector(bark5, pubs));
+
+    ASSERT_TRUE(manager.logout());
 }
