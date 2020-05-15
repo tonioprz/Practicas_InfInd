@@ -1,5 +1,5 @@
 #include "Bark.hpp"
-
+#include <ctime>
 
 //Getters and Setters
 string Bark::getText()
@@ -27,7 +27,8 @@ string Bark::getBark()
 {
     //Se concatena una string con el formato deseado
     //La función to_string sirve para convertir de formato int a string
-    return _user->getUsername() + " - " + to_string(_time) + ":\n" + _text;
+    long int tiempo = _time;
+    return _user->getUsername() + " - " + ctime(&tiempo) + ":\n" + _text;
 }
 
 //Destructor

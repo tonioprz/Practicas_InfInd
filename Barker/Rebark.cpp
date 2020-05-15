@@ -1,10 +1,12 @@
 #include "Rebark.hpp"
+#include <ctime>
 
 //Rebark::Rebark() {}
 
 string Rebark::getBark()
 {
-    return _user->getUsername() + " rebarked - " + to_string(_time) + ":\n" + _text
+    long int tiempo = _time;
+    return _user->getUsername() + " rebarked - " + ctime(&tiempo) + ":\n" + _text
             + "\n***\n" + _publication->getBark() + "\n***";
 }
 
