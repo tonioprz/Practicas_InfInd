@@ -26,11 +26,9 @@ char Bark::publicationType()
 string Bark::getBark()
 {
     //Se concatena una string con el formato deseado
-    long int tim = _time;
-    string tiempo = ctime(&tim);
-    tiempo.erase(tiempo.end()-1,tiempo.end());
+    //La función to_string sirve para convertir de formato int a string
 
-    return _user->getUsername() + " - " + tiempo + ":\n" + _text;
+    return _user->getUsername() + " - " + to_string(_time) + ":\n" + _text;
 }
 
 //Destructor

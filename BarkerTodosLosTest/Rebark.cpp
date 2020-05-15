@@ -5,11 +5,7 @@
 
 string Rebark::getBark()
 {
-    long int tim = _time;
-    string tiempo = ctime(&tim);
-    tiempo.erase(tiempo.end()-1,tiempo.end());
-
-    return _user->getUsername() + " rebarked - " + tiempo + ":\n" + _text
+    return _user->getUsername() + " rebarked - " + to_string(_time) + ":\n" + _text
             + "\n***\n" + _publication->getBark() + "\n***";
 }
 

@@ -4,11 +4,7 @@
 
 string Reply::getBark()
 {
-    long int tim = _time;
-    string tiempo = ctime(&tim);
-    tiempo.erase(tiempo.end()-1,tiempo.end());
-
-    return _user->getUsername() + " replied - " + tiempo + ":\n===\n"
+    return _user->getUsername() + " replied - " + to_string(_time) + ":\n===\n"
             + _publication->getBark() + "\n===\n" + _text;
 }
 
