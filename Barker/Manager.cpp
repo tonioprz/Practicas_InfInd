@@ -1,5 +1,4 @@
 #include "Manager.hpp"
-#include <fstream>
 
 Manager::Manager() //Constructor de Manager
 {
@@ -360,6 +359,12 @@ bool Manager::createReply(int id, string text)
 bool Manager::saveToFile(string archivo)
 {
    ofstream fs(archivo);
+
+   //Se comprueba si se ha abierto correctamente el archivo
+   if(fs.bad()){
+       cout << "Error al abrir el archivo";
+       return false;
+   }
    fs << "Fichero de usuarios y publicaciones de Baker" << endl;
 
    //Se guardan los usuarios
@@ -427,6 +432,7 @@ bool Manager::saveToFile(string archivo)
        }
    }
    fs.close();
+   return true;
 }
 
 bool Manager::loadFromFile(string archivo)
@@ -450,4 +456,50 @@ bool Manager::loadFromFile(string archivo)
         _users.erase(_users.begin()+i); //Se borra del vector
         delete aux; //Se elimina el contenido del puntero
     }
+
+    ifstream fs(archivo, ios::in);
+
+    //Se comprueba si se ha abierto correctamente el archivo
+    if(fs.bad()){
+        cout << "Error al abrir el archivo";
+        return false;
+    }
+
+    string linea;
+    string email;
+    string password;
+    string username;
+    string bio;
+    vector<vector<string>> following;
+    vector<vector<string>> idpubs;
+    int usuario = 0;
+
+    while(!fs.eof()){
+        getline(fs,linea);
+        if(linea == "#") //Es un usuario
+        {// Obtenemos sus datos
+            getline(fs, email);
+            getline(fs, password);
+            getline(fs, username);
+            getline(fs, bio);
+            createUser(email,password,username,bio);
+            getline(fs, linea); //numero de followers (innecesario)
+            getline(fs, linea); //following
+            //Mientras la siguiente línea no sea publications: serán nuevos usuarios seguidos
+            while(linea != "publications:"){
+                getline(fs, linea);
+                if(linea != "publications:") {following[usuario].push_back(linea);}
+            }
+            //A continuación tendremos los ids de las publicaciones hasta que aparezca un #
+            while(linea != "#"){
+                getline(fs, linea);
+                if(linea != "#") {idpubs[usuario].push_back(linea);}
+            }
+            usuario++;
+        }
+        if(linea.compare(0,1, "$")){
+
+        }
+    }
 }
+

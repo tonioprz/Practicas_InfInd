@@ -7,6 +7,8 @@
 #include "Bark.hpp"
 #include "Rebark.hpp"
 #include "Reply.hpp"
+#include <fstream>
+
 
 using namespace std;
 
