@@ -647,5 +647,3 @@ bool Manager::loadFromFile(string archivo)
     fs.close();
     return true;
 }
-
-if(stoi(id) > _idu)
