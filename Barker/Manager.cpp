@@ -567,6 +567,9 @@ bool Manager::loadFromFile(string archivo)
                     // Añadimos el Bark
                     Bark* b = new Bark(stoi(id), stol(time),_users[i],text);
                     _users[i]->addPublication(b);
+                    if(stoi(id) > _idultimo){
+                        _idultimo = stoi(id);
+                    }
                 }
             }
         }
@@ -599,6 +602,9 @@ bool Manager::loadFromFile(string archivo)
                 if(_users[i]->getUsername() == userpub){
                     Rebark* b = new Rebark(stoi(id), stol(time),pub,_users[i],text);
                     _users[i]->addPublication(b);
+                    if(stoi(id) > _idultimo){
+                        _idultimo = stoi(id);
+                    }
                 }
             }
         }
@@ -631,6 +637,9 @@ bool Manager::loadFromFile(string archivo)
                 if(_users[i]->getUsername() == userpub){
                     Reply* b = new Reply(stoi(id), stol(time),pub,_users[i],text);
                     _users[i]->addPublication(b);
+                    if(stoi(id) > _idultimo){
+                        _idultimo = stoi(id);
+                    }
                 }
             }
         }
@@ -638,3 +647,5 @@ bool Manager::loadFromFile(string archivo)
     fs.close();
     return true;
 }
+
+if(stoi(id) > _idu)
